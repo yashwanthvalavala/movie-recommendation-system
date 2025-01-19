@@ -1,0 +1,114 @@
+# Movie Recommendation System
+
+## Overview
+This is a web-based Movie Recommendation System that suggests movies similar to a selected title using a machine learning approach. The system is built using Python, Flask, and JavaScript, and leverages cosine similarity for recommendations. It also includes a user-friendly frontend with an integrated search feature.
+
+---
+
+## Features
+- **Select a Movie**: Users can choose a movie from a dropdown list.
+- **Recommendations**: Displays a list of top recommended movies based on the selected title.
+- **Search Bar**: Allows users to search for movies dynamically.
+- **Responsive UI**: Built with modern HTML, CSS, and JavaScript for a seamless experience.
+
+---
+
+## Technologies Used
+- **Backend**: Flask
+- **Frontend**: HTML, CSS, JavaScript
+- **Data Processing**: Python (Pandas, NumPy, NLTK, Scikit-learn)
+- **Storage**: Pickle files for saving data and similarity matrix
+
+---
+
+## Setup and Installation
+### Prerequisites
+Ensure you have the following installed:
+- Python 3.7+
+- pip (Python package manager)
+- Git
+
+### Steps
+1. Clone the repository:
+   ```bash
+   git clone <repository_url>
+   cd <repository_folder>
+   ```
+
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Run the Flask app:
+   ```bash
+   python app.py
+   ```
+
+4. Access the application in your browser at `http://127.0.0.1:5000`.
+
+---
+
+## How It Works
+1. The system reads movie data from `tmdb_5000_movies.csv` and `tmdb_5000_credits.csv`.
+2. Relevant features like genres, keywords, cast, and crew are extracted and processed.
+3. Tags are created by concatenating these features.
+4. Text data is preprocessed and vectorized using `CountVectorizer`.
+5. Recommendations are computed using cosine similarity between the vectorized tags.
+
+---
+
+## File Structure
+```
+Movie-Recommendation-System/
+|
+├── static/
+│   ├── style.css       # Styling for the web application
+|
+├── templates/
+│   ├── index.html      # Main HTML file
+|
+├── app.py              # Flask application code
+├── tmdb_5000_movies.csv # Dataset: Movie details
+├── tmdb_5000_credits.csv # Dataset: Cast and crew details
+├── list_of_movies.pkl   # Pickled list of movies
+├── similarities.pkl     # Pickled similarity matrix
+├── requirements.txt     # Python dependencies
+|
+└── README.md            # Documentation (this file)
+```
+
+---
+
+## Usage
+1. Start the Flask app and navigate to the homepage.
+2. Select a movie from the dropdown or use the search bar to find a movie.
+3. Click the "Get Recommendations" button to see similar movies.
+
+---
+
+## Example
+**Input**: `Spider-Man 2`
+
+**Output**:
+- Spider-Man
+- Spider-Man 3
+- The Amazing Spider-Man
+- The Dark Knight
+- Iron Man
+
+---
+
+## Contributing
+Contributions are welcome! Feel free to fork the repository, make changes, and submit a pull request.
+
+---
+
+## License
+This project is licensed under the MIT License.
+
+---
+
+## Contact
+For any inquiries or feedback, please contact yashwanthprasadvalavala@gmail.com.
+
