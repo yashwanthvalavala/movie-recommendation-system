@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Movie Recommendation System</h1>
+        <form id="movieForm">
+            <label for="movie">Select a Movie:</label>
+            <select id="movie" name="movie">
+                <option value="">--Choose a Movie--</option>
+                {% for movie in movies %}
+                <option value="{{ movie }}">{{ movie }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Get Recommendations</button>
+        </form>
+        <div id="result">
+            <h2>Recommended Movies:</h2>
+            <ul id="recommendations"></ul>
+        </div>
+    </div>
+    <script>
+        document.getElementById('movieForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const movie = document.getElementById('movie').value;
+            if (!movie) {
+                alert('Please select a movie');
+                return;
+            }
+            const response = await fetch('/recommend', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `movie=${encodeURIComponent(movie)}`
+            });
+            const data = await response.json();
+            const recommendations = document.getElementById('recommendations');
+            recommendations.innerHTML = '';
+            if (data.status === 'success') {
+                data.movies.forEach(m => {
+                    const li = document.createElement('li');
+                    li.textContent = m;
+                    recommendations.appendChild(li);
+                });
+            } else {
+                alert(data.message);
+            }
+        });
+    </script>
+</body>
+</html>
